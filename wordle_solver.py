@@ -1,6 +1,5 @@
 from wordle_game import wordle
 import numpy as np
-import tqdm
 
 def solve_wordle():
     env = wordle()
@@ -20,6 +19,9 @@ def solve_wordle():
         for j in range(len(env.all_possible_words) - 1, -1, -1):
             if not env.is_possible(env.all_possible_words[j], False):
                 del env.all_possible_words[j]
+        if i == 0:
+            with open("output.txt", 'w') as f:
+                f.write(env.guesses[i])
         print(env.guesses[i])
         print(len(env.all_possible_words))
 
