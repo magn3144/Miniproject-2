@@ -1,12 +1,13 @@
 from wordle_game import wordle
 import numpy as np
+import tqdm
 
 def solve_wordle():
     env = wordle()
-    all_info = np.full((6, 5), -1)
     for i in range(6):
         information_gain_sums = np.zeros(len(env.all_possible_words), dtype='int')
         for j, possible_guess in enumerate(env.all_possible_words):
+            print("First loop nr: " + str(j))
             for possible_word in env.all_possible_words:
                 env.guesses[env.n_guesses] = possible_guess
                 env.all_info[env.n_guesses] = env.check_answer(possible_word, possible_guess)
