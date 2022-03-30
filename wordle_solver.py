@@ -3,7 +3,9 @@ import numpy as np
 
 def solve_wordle():
     env = wordle()
-    for i in range(6):
+    env.make_guess("raise")
+    print(len(env.all_possible_words))
+    for i in range(5):
         information_gain_sums = np.zeros(len(env.all_possible_words), dtype='int')
         for j, possible_guess in enumerate(env.all_possible_words):
             print("First loop nr: " + str(j))
@@ -16,9 +18,6 @@ def solve_wordle():
                         n_impossible_words += 1
                 information_gain_sums[j] += n_impossible_words
         env.make_guess(env.all_possible_words[np.argmax(information_gain_sums)])
-        for j in range(len(env.all_possible_words) - 1, -1, -1):
-            if not env.is_possible(env.all_possible_words[j], False):
-                del env.all_possible_words[j]
         if i == 0:
             with open("output.txt", 'w') as f:
                 f.write(env.guesses[i])

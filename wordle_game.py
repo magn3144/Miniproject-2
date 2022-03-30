@@ -22,6 +22,10 @@ class wordle:
         self.all_info[self.n_guesses] = self.check_answer(self.word, guess)
         self.guesses[self.n_guesses] = guess
         self.n_guesses += 1
+
+        for j in range(len(self.all_possible_words) - 1, -1, -1):
+            if not self.is_possible(self.all_possible_words[j], False):
+                del self.all_possible_words[j]
     
     def is_possible(self, word, simulating):
         for i in range(self.n_guesses + simulating):
