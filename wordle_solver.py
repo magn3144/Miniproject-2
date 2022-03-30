@@ -8,7 +8,6 @@ def solve_wordle():
     for i in range(5):
         information_gain_sums = np.zeros(len(env.all_possible_words), dtype='int')
         for j, possible_guess in enumerate(env.all_possible_words):
-            print("First loop nr: " + str(j))
             for possible_word in env.all_possible_words:
                 env.guesses[env.n_guesses] = possible_guess
                 env.all_info[env.n_guesses] = env.check_answer(possible_word, possible_guess)
