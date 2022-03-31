@@ -8,6 +8,7 @@ class wordle:
         self.guesses = [None] * 6
         self.all_info = np.zeros((6, 5), dtype='int')
         self.n_guesses = 0
+        self.win = False
 
     def check_answer(self, correct_word, guess):
         info = np.zeros(5, dtype='int')
@@ -19,6 +20,9 @@ class wordle:
         return info
 
     def make_guess(self, guess):
+        if self.word == guess:
+            self.win = True
+
         self.all_info[self.n_guesses] = self.check_answer(self.word, guess)
         self.guesses[self.n_guesses] = guess
         self.n_guesses += 1
